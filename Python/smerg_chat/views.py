@@ -12,8 +12,7 @@ from drf_yasg import openapi
 # Rooms
 class Rooms(APIView):
     @swagger_auto_schema(operation_description="Get a list of all chat rooms for the authenticated user.",
-        responses={200: "List of chat rooms retrieved successfully.",
-                   404: "User does not exist.",400: "Token is not passed."})
+        responses={200: "List of chat rooms retrieved successfully.", 404: "User does not exist.",400: "Token is not passed."})
     async def get(self, request):
         if request.headers.get('token'):
             exist = await UserProfile.objects.filter(auth_token=request.headers.get('token')).aexists()
